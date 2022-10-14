@@ -12,6 +12,7 @@ import yaml
 import json
 import inspect
 import importlib
+import omegaconf
 from matplotlib.ticker import MaxNLocator
 
 
@@ -48,11 +49,16 @@ def instancialize(Model, args, **other_args):
         to overwrite the corresponding value in self.hparams.
     """
     args = vars(args)
+    if '_content' in args:
+        args = args['_content']
     class_args = inspect.getargspec(Model.__init__).args[1:]
     inkeys = args.keys()
     args1 = {}
     for arg in class_args:
         if arg in inkeys:
-            args1[arg] = args[arg]
+            if type(args[arg]) == omegaconf.nodes.AnyNode:
+                args1[arg] = args[arg]._val
+            else:
+                args1[arg] = args[arg]
     args1.update(other_args)
     return Model(**args1)

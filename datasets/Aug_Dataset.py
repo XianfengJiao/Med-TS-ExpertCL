@@ -12,12 +12,12 @@ from utils.augmentation_utils import *
 
 class Aug_Dataset(Dataset):
     def __init__(self, input_data, config, kfold=0, aug_type='strong'):
-        self.x = input_data
-        self.lens = [len(i) for i in self.x]
         self.aug_type = aug_type
         self.config = config
+
+        self.x = self._get_n2n_data(input_data) if config.n2n else input_data
+        self.lens = [len(i) for i in self.x]
         self.configure_transform()
-        
 
     def __len__(self):
         return len(self.x)
@@ -26,6 +26,14 @@ class Aug_Dataset(Dataset):
         x = self.x[index]
         lens = self.lens[index]
         return x, lens
+
+    def _get_n2n_data(self, x):
+        length = len(x)
+        x_n2n = []
+        for i in range(length):
+            for j in range(len(x[i])):
+                x_n2n.append(np.array(x[i])[:j+1])
+        return x_n2n
 
     def configure_transform(self):
         if self.aug_type == 'strong':
