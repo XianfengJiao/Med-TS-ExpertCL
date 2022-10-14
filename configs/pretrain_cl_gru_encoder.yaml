@@ -1,0 +1,14 @@
+
+beta1: 0.9
+beta2: 0.99
+
+augmentation:
+    jitter_scale_ratio: 1.5
+    jitter_ratio: 2
+    max_seg: 12
+  
+Context_Cont:
+    use_cosine_similarity: True
+    temperature: 0.2
+
+  
