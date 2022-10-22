@@ -15,7 +15,8 @@ class Aug_Dataset(Dataset):
         self.aug_type = aug_type
         self.config = config
 
-        self.x = self._get_n2n_data(input_data) if config.n2n else input_data
+        # self.x = self._get_n2n_data(input_data) if config.n2n else input_data
+        self.x = self._get_merge_data(input_data) if config.merge else input_data
         self.lens = [len(i) for i in self.x]
         self.configure_transform()
 
@@ -26,6 +27,16 @@ class Aug_Dataset(Dataset):
         x = self.x[index]
         lens = self.lens[index]
         return x, lens
+
+    def _get_merge_data(self, x):
+        feature_size = len(x[0][0])
+        merge_x = []
+        for fi in range(feature_size):
+            for px in x:
+                merge_x.append([])
+                for rx in px:
+                    merge_x[-1].append(rx[fi])
+        return merge_x
 
     def _get_n2n_data(self, x):
         length = len(x)

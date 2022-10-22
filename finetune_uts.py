@@ -118,7 +118,7 @@ if __name__ == '__main__':
     parser.add_argument('--seed', default=5, type=int)
     parser.add_argument('--kfold', default=5, type=int)
     parser.add_argument('--n2n', action='store_true')
-    parser.add_argument('--lr', default=1e-3, type=float)
+    parser.add_argument('--lr', default=5e-3, type=float)
     parser.add_argument('--dropout_rate', default=0.5, type=float)
     parser.add_argument('--epoch', default=100, type=int)
     parser.add_argument('--early_stop', default=20, type=int)

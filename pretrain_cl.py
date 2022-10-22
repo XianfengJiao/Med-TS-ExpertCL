@@ -28,6 +28,7 @@ def main(args):
     # ------------------------ load config ------------------------
     config = load_config_file(args.config_path)
     config = OmegaConf.merge(config, vars(args))
+    OmegaConf.save(config=config, f=os.path.join(config.log_dir, 'config.yml'))
     # ------------------------ fix random seeds for reproducibility ------------------------
     setup_seed(args.seed)
     
@@ -108,6 +109,7 @@ if __name__ == '__main__':
     parser.add_argument('--dropout_rate', default=0.5, type=float)
     parser.add_argument('--epoch', default=100, type=int)
     parser.add_argument('--n2n', action='store_true')
+    parser.add_argument('--merge', action='store_true')
     parser.add_argument('--early_stop', default=20, type=int)
     parser.add_argument('--hidden_dim', default=64, type=int)
     args = parser.parse_args()
