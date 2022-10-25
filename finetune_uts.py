@@ -89,6 +89,7 @@ def main(args):
             if trainer.remain_step == 0:
                 break
         print('#'*20,"kfold-{}: end training...".format(i),'#'*20)
+        copyfile(trainer.best_model_path, trainer.best_model_path.replace('.pth','_' + trainer.monitor + '_' + str(trainer.best_metric) + '.pth'))
 
         # ----------------- Save Metrics -------------------------
         for key, value in trainer.metric_all.items():

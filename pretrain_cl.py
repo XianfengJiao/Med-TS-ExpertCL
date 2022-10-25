@@ -28,6 +28,7 @@ def main(args):
     # ------------------------ load config ------------------------
     config = load_config_file(args.config_path)
     config = OmegaConf.merge(config, vars(args))
+    os.makedirs(config.log_dir, exist_ok=True)
     OmegaConf.save(config=config, f=os.path.join(config.log_dir, 'config.yml'))
     # ------------------------ fix random seeds for reproducibility ------------------------
     setup_seed(args.seed)
