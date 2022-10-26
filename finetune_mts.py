@@ -125,7 +125,7 @@ if __name__ == '__main__':
     parser.add_argument('--config_path', default='/home/v-xiajiao/code/Med-TS-ExpertCL/configs/pretrain_cl_gru_encoder.yaml', type=str)
     parser.add_argument('--log_dir', default='/home/v-xiajiao/code/Med-TS-ExpertCL/logs/finetune/debug_mts', type=str)
     parser.add_argument('--pretrian_ckpt_path', default=None, type=str)
-    parser.add_argument('--model_name', default='MC_GRU_predictor', type=str)
+    parser.add_argument('--model_name', default='MC_GRU_BN_predictor', type=str)
     parser.add_argument('--criterion_name', default='mse', type=str)
     parser.add_argument('--monitor', default='auroc', type=str)
     parser.add_argument('--x_path', default='/home/v-xiajiao/code/Med-TS-ExpertCL/input/Sepsis/x.pkl', type=str)

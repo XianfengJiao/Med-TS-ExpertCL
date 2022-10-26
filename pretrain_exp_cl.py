@@ -19,7 +19,7 @@ start_time = datetime.now()
 def load_data(x_path, y_path, exp_path, config):
     x = pkl.load(open(x_path, 'rb'))
     y = pkl.load(open(y_path, 'rb'))
-    exp = pkl.load(open(exp_path, 'rb'))
+    exp = pkl.load(open(exp_path, 'rb')) # sample_nam * feature_num * 6
     if not config.n2n:
         y = [yy[-1] for yy in y]
     return x, y, exp

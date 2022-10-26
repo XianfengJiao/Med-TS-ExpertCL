@@ -70,8 +70,10 @@ class CL_Trainer(object):
             features1 = self.model(aug1, lens)
             features2 = self.model(aug2, lens)
             loss = self.criterion(features1, features2)
+            self.model.zero_grad()
+            self.optimizer.zero_grad()
             loss.backward()
-            torch.nn.utils.clip_grad_norm_(self.model.parameters(), 5) 
+            torch.nn.utils.clip_grad_norm_(self.model.parameters(), 5)
             self.optimizer.step()
             loss_epoch += loss.item()
         
