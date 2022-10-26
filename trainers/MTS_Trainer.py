@@ -70,7 +70,7 @@ class MTS_Trainer(object):
             pred = self.model(x, lens)
             loss = self.criterion(pred, y)
             loss.backward()
-            torch.nn.utils.clip_grad_norm(self.model.parameters(), 5) 
+            torch.nn.utils.clip_grad_norm_(self.model.parameters(), 5) 
             self.optimizer.step()
             loss_epoch += loss.item()
 
