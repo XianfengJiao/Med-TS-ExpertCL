@@ -72,6 +72,7 @@ class Exp_CL_Trainer(object):
             features = self.model(x, lens)
             loss = self.criterion(features, exp)
             loss.backward()
+            torch.nn.utils.clip_grad_norm(self.model.parameters(), 5) 
             self.optimizer.step()
             loss_epoch += loss.item()
         

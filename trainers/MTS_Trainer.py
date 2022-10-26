@@ -13,7 +13,7 @@ import random
 import torch
 import time
 
-class UTS_Trainer(object):
+class MTS_Trainer(object):
     def __init__(
         self,
         train_loader,
@@ -138,7 +138,7 @@ class UTS_Trainer(object):
 
     def configure_optimizer(self, config):
         # return torch.optim.Adam(self.model.parameters(), lr=self.lr)
-        return torch.optim.Adam(self.model.parameters(), lr=config.lr, betas=(config.beta1, config.beta2), weight_decay=3e-4)
+        return torch.optim.Adam(filter(lambda p: p.requires_grad, self.model.parameters()), lr=config.lr, betas=(config.beta1, config.beta2), weight_decay=3e-4)
 
     def configure_criterion(self, criterion_name, config):
         if criterion_name == 'mse':

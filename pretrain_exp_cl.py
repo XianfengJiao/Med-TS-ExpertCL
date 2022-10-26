@@ -95,17 +95,16 @@ def main(args):
     print("Loss: {:.4f} ({:.4f})".format(np.mean(kfold_loss), np.std(kfold_loss)))
     print(f"Training time is : {datetime.now()-start_time}")
 
-
 if __name__ == '__main__':
     parser = ArgumentParser()
-    parser.add_argument('--ckpt_save_path', default='/home/v-xiajiao/code/Med-TS-ExpertCL/checkpoints/pretrian/debug_alb_exp', type=str)
-    parser.add_argument('--log_dir', default='/home/v-xiajiao/code/Med-TS-ExpertCL/logs/pretrian/debug_alb_exp', type=str)
+    parser.add_argument('--ckpt_save_path', default='/home/v-xiajiao/code/Med-TS-ExpertCL/checkpoints/pretrian/debug_o2sat_exp', type=str)
+    parser.add_argument('--log_dir', default='/home/v-xiajiao/code/Med-TS-ExpertCL/logs/pretrian/debug_o2sat_exp', type=str)
     parser.add_argument('--config_path', default='/home/v-xiajiao/code/Med-TS-ExpertCL/configs/pretrain_cl_gru_encoder.yaml', type=str)
     parser.add_argument('--model_name', default='GRU_encoder', type=str)
     parser.add_argument('--criterion_name', default='ExpertCLLoos', type=str)
-    parser.add_argument('--x_path', default='/home/v-xiajiao/code/Med-TS-ExpertCL/input/CKD/alb_demo_data/alb_x.pkl', type=str)
-    parser.add_argument('--exp_path', default='/home/v-xiajiao/code/Med-TS-ExpertCL/input/CKD/expert_feature/Albumin_expert_feature.pkl', type=str)
-    parser.add_argument('--y_path', default='/home/v-xiajiao/code/Med-TS-ExpertCL/input/CKD/y.pkl', type=str)
+    parser.add_argument('--x_path', default='/home/v-xiajiao/code/Med-TS-ExpertCL/input/Sepsis/feature/o2sat_x.pkl', type=str)
+    parser.add_argument('--exp_path', default='/home/v-xiajiao/code/Med-TS-ExpertCL/input/Sepsis/expert_feature/o2sat_expert_feature.pkl', type=str)
+    parser.add_argument('--y_path', default='/home/v-xiajiao/code/Med-TS-ExpertCL/input/Sepsis/y.pkl', type=str)
     parser.add_argument('--batch_size', default=32, type=int)
     parser.add_argument('--seed', default=5, type=int)
     parser.add_argument('--kfold', default=5, type=int)

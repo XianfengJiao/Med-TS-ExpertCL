@@ -1,4 +1,3 @@
-
 import torch
 from torch import nn
 import os.path as op
@@ -30,3 +29,5 @@ class GRU_predictor(nn.Module):
         out = self.l_out(hn).squeeze(-1)
 
         return out
+
+
